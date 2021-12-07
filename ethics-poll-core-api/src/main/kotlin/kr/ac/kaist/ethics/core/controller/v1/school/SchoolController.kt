@@ -1,5 +1,6 @@
 package kr.ac.kaist.ethics.core.controller.v1.school
 
+import kr.ac.kaist.ethics.core.controller.v1.school.reqres.AnswerRequest
 import kr.ac.kaist.ethics.core.controller.v1.school.reqres.QuestionDto
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -20,15 +21,13 @@ class SchoolController(
     @GetMapping(value = ["list"])
     fun list(servletResponse: HttpServletResponse): List<QuestionDto> {
         val res = service.getList()
-        servletResponse.addCookie(Cookie("sessionid", UUID.randomUUID().toString()))
+        servletResponse.addCookie(Cookie("sessionId", UUID.randomUUID().toString()))
         return res
     }
 
     @PostMapping(value = ["answer"])
-    fun answer(/* servletRequest: HttpServletRequest, @RequestBody req: AnswerRequest */) {
-        /*
-        service.newAnswer(user, )
-         */
+    fun answer(servletRequest: HttpServletRequest, @RequestBody req: AnswerRequest) {
+        service.newAnswer(servletRequest, req)
     }
 
     @PostMapping(value = ["new"])
