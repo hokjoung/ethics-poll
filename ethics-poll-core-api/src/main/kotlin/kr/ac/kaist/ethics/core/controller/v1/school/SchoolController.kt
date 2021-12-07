@@ -1,6 +1,7 @@
 package kr.ac.kaist.ethics.core.controller.v1.school
 
-import kr.ac.kaist.ethics.core.controller.v1.school.reqres.AnswerRequest
+import kr.ac.kaist.ethics.core.controller.v1.school.reqres.NewAnswerRequest
+import kr.ac.kaist.ethics.core.controller.v1.school.reqres.NewQuestionRequest
 import kr.ac.kaist.ethics.core.controller.v1.school.reqres.QuestionDto
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -26,11 +27,14 @@ class SchoolController(
     }
 
     @PostMapping(value = ["answer"])
-    fun answer(servletRequest: HttpServletRequest, @RequestBody req: AnswerRequest) {
+    fun newAnswer(servletRequest: HttpServletRequest, @RequestBody req: NewAnswerRequest): Boolean {
         service.newAnswer(servletRequest, req)
+        return true
     }
 
     @PostMapping(value = ["new"])
-    fun new() {
+    fun newQuestion(@RequestBody req: NewQuestionRequest): Boolean {
+        service.newQuestion(req)
+        return true
     }
 }
