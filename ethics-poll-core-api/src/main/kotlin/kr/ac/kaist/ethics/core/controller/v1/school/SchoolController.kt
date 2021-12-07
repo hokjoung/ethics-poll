@@ -1,6 +1,5 @@
 package kr.ac.kaist.ethics.core.controller.v1.school
 
-import kr.ac.kaist.ethics.core.controller.v1.school.reqres.AnswerStatDto
 import kr.ac.kaist.ethics.core.controller.v1.school.reqres.QuestionDto
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -15,11 +14,11 @@ class SchoolController(
 ) {
     @GetMapping(value = ["list"])
     fun list(): List<QuestionDto> {
-        return listOf(QuestionDto(question = "aaa", option1 = "bbb", option2 = "ccc", answerStats = AnswerStatDto(option1Count = 1, option2Count = 2)))
         /*
         service.getQuestionList()
         servletResponse.addCookie()
          */
+        return emptyList()
     }
 
     @PostMapping(value = ["answer"])
