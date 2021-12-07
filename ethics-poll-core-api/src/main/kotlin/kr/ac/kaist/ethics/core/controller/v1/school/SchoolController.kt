@@ -22,7 +22,7 @@ class SchoolController(
     @GetMapping(value = ["list"])
     fun list(servletRequest: HttpServletRequest, servletResponse: HttpServletResponse): List<QuestionDto> {
         val res = service.getList()
-        if (!servletRequest.cookies.any { it.name == "sessionId" }) {
+        if (servletRequest.cookies?.any { it.name == "sessionId" } != false) {
             servletResponse.addCookie(Cookie("sessionId", UUID.randomUUID().toString()))
         }
         return res
