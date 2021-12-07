@@ -22,6 +22,7 @@ class SchoolService(
         return questionList.map { question ->
             val answersForQuestion = answerList.filter { it.refQuestionId == question.id }
             QuestionDto(
+                id = question.id,
                 question = question.question,
                 option1 = question.option1,
                 option2 = question.option2,
